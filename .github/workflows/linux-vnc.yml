@@ -40,5 +40,9 @@ jobs:
         RUNNER_WEBSERVICE: ${{ github.event.inputs.webservice }}
         VNC_PASSWORD: ${{ secrets.VNC_PASSWORD }}
       run: ./scripts/webservice.sh
+    - name: Creating tunnel with ssh...
+      env:
+        SSH_TUNNEL: ${{ secrets.SSH_TUNNEL }}
+      run: ./scripts/tunnel.sh serveo http 8080; ./scripts/tunnel.sh pinggy tcp 7582
     - name: Creating tunnel with ngrok...
       run: ./ngrok start --all --config ./resources/ngrok.yml
