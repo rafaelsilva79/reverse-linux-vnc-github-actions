@@ -4,6 +4,8 @@ if [ "$RUNNER_WEBSERVICE" == "novnc" ]
 then
     # Setup noVNC
     sudo apt-get install novnc websockify
+    sudo rm -rf /usr/share/novnc/*
+    sudo git clone --branch touchpad-mode https://github.com/bitbound/noVNC.git /usr/share/novnc
     websockify -D \
         --web /usr/share/novnc/ \
         8080 \
